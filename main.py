@@ -23,8 +23,10 @@ while True:
         face_grayscale = cv2.cvtColor(the_face, cv2.COLOR_BGR2GRAY)
 
         smile = smile_cascade.detectMultiScale(face_grayscale, scaleFactor=1.7, minNeighbors=neighbors)
-        for (x, y, w, h) in smile:
-            cv2.rectangle(the_face, (x, y), (x+w, y+h), (0, 0, 0), 2)
+
+        
+        if len(smile) > 0:
+            cv2.putText(frame, 'smiling', (x, y+h+40), fontScale=3, fontFace=cv2.FONT_HERSHEY_PLAIN, color=(255, 255, 255))
 
     cv2.imshow("smile detector", frame)
 
